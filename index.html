@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Jorge Hermes</title>
+    <style>
+        body {
+            font-family: monospace;
+            background-color: #222;
+            color: #fff;
+            margin: 0;
+            padding: 0;
+            overflow: hidden;
+        }
+        #monospace {
+            white-space: pre;
+            margin: 0;
+            padding: 0;
+            font-size: 1rem;
+            line-height: 1.5;
+            animation: typing 4s steps(40, end), cursor 800ms steps(1) infinite;
+        }
+        @keyframes typing {
+            from { width: 0; }
+            to { width: 100%; }
+        }
+        @keyframes cursor {
+            50% { border-color: #fff; }
+        }
+        .cursor {
+            animation: cursor 800ms steps(1) infinite;
+            display: inline-block;
+            vertical-align: bottom;
+            margin-left: 5px;
+            width: 2px;
+            height: 20px;
+            border-right: 2px solid #fff;
+        }
+    </style>
+</head>
+<body>
+    <div id="monospace"></div>
+
+    <script>
+        const text = `Contact:
+            Email: jorgejhermesn@pm.me
+
+Education:
+            Scholar of Software Engineering, UEPA (Universidade Estadual do Pará), 2024-XXXX
+            Finished High School, Colégio Physics, 2021-2023
+            Fluency in English and Portuguese
+
+Experience:
+            https://github.com/jhermesn/
+
+Skills:
+            HTML
+            CSS
+            JavaScript
+            NodeJs
+            Python
+            Lua
+        `;
+
+        let index = 0;
+        const monospace = document.getElementById('monospace');
+        const cursor = document.createElement('span');
+        cursor.className = 'cursor';
+        monospace.appendChild(cursor);
+        let timeout;
+
+        function typeText() {
+            if (index < text.length) {
+                monospace.textContent += text.charAt(index);
+                index++;
+            } else {
+                clearTimeout(timeout); // stop the recursive calls
+            }
+            cursor.style.left = (monospace.scrollLeft + monospace.clientWidth) + 'px';
+            monospace.scrollLeft = monospace.scrollWidth;
+            timeout = setTimeout(typeText, 50); // start the next call
+        }
+
+        setTimeout(typeText, 2000);
+    </script>
+</body>
+</html>
